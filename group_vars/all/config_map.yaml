@@ -1,0 +1,36 @@
+---
+config_map:
+  aws:
+    access_key: "{{ lookup('ENV', 'AWS_ACCESS_KEY_ID') }}" 
+    secret_key: "{{ lookup('ENV', 'AWS_SECRET_ACCESS_KEY') }}"
+    role: "ansible-network.aws"
+    "eu-central-1":
+      csr: 
+        image: "ami-017c87435c405f3ce"
+        size: "c4.large"
+        user: "ec2-user"
+        role: "ansible-network.cisco_ios"
+        key: "keychain/key/eu-central-1/csr/ami-017c87435c405f3ce"
+    "eu-west-1":
+      csr:
+        image: "ami-0b4699b61c1e678a2"
+        size: "c4.large"
+        user: "ec2-user"
+        role: "ansible-network.cisco_ios"
+        key: "keychain/key/eu-west-1/csr/ami-0b4699b61c1e678a2"
+    "eu-west-2":
+      csr:
+        image: "ami-01f405e96dbb3f2af"
+        size: "c4.large"
+        user: "ec2-user"
+        role: "ansible-network.cisco_ios"
+        key: "keychain/key/eu-west-2/csr/ami-01f405e96dbb3f2af"
+    "eu-west-3":
+      csr: 
+        image: "ami-05dc9188eb99b99b9"
+        size: "c4.large"
+        user: "ec2-user"
+        role: "ansible-network.cisco_ios"
+        key: "keychain/key/eu-west-3/csr/ami-05dc9188eb99b99b9"
+
+

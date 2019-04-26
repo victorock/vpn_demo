@@ -1,0 +1,10 @@
+---
+- name: "VPNaaS or SDwan?"
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars_files:
+    - "{{ cloud_vpn_initiator }}"
+    - "{{ cloud_vpn_responder }}"
+  roles:
+    - role: "ansible-network.cloud_vpn"
