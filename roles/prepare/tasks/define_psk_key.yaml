@@ -1,0 +1,4 @@
+---
+- name: "Define cloud_vpn_psk for domain based on domain name"
+  set_fact:
+    cloud_vpn_psk: "{{ cloud_vpn_name | password_hash('sha512', 65534 | random(seed=cloud_vpn_name) | string) }}"

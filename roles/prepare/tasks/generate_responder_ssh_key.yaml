@@ -1,0 +1,9 @@
+---
+- name: "Ensure existence of folder for responder's ssh key"
+  file:
+    path: "{{ cloud_vpn_responder_ssh_private_key_file | dirname }}"
+    state: "directory"
+
+- name: "Generate ssh for responder"
+  openssh_keypair:
+    path: "{{ cloud_vpn_responder_ssh_private_key_file }}"

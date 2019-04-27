@@ -1,0 +1,24 @@
+---
+- name: "Define domain psk key"
+  include_tasks: "define_psk_key.yaml"
+  when: not cloud_vpn_name
+
+- name: "Generate initiator ssh key"
+  include_tasks: "generate_initiator_ssh_key.yaml"
+  when: cloud_vpn_initiator_ssh_private_key_file is defined
+
+- name: "Generate responder ssh key"
+  include_tasks: "generate_responder_ssh_key.yaml"
+  when: cloud_vpn_responder_ssh_private_key_file is defined
+
+- name: "Define initiator image"
+  include_tasks: "define_initiator_ami_id.yaml"
+  when:
+    - cloud_vpn_initiator_image_id is not defined
+    - cloud_vpn_initiator_image_name is defined
+
+- name: "Define responder image"
+  include_tasks: "define_responder_ami_id.yaml"
+  when:
+    - cloud_vpn_responder_image_id is not defined
+    - cloud_vpn_responder_image_name is defined

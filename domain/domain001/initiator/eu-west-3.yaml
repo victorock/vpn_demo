@@ -1,8 +1,8 @@
 ---
-cloud_vpn_initiator_provider: rhel
+cloud_vpn_initiator_provider: csr
 cloud_vpn_initiator_provisioner: aws
 cloud_vpn_initiator_vpc_cidr: 10.3.0.0/16
 cloud_vpn_initiator_cidr: 10.3.0.0/24
 cloud_vpn_initiator_private_ip: 10.3.0.10
-cloud_vpn_initiator_outside_interface: eth0
+cloud_vpn_initiator_outside_interface: GigabitEthernet1
 cloud_vpn_initiator_aws_region: eu-west-3

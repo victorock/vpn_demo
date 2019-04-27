@@ -1,0 +1,18 @@
+---
+- name: "Find responder ami"
+  ec2_ami_facts:
+    region: "{{ cloud_vpn_responder_aws_region | default(omit) }}"
+    owners: "{{ cloud_vpn_responder_image_owner | default(omit) }}"
+    filters:
+      name: "{{ cloud_vpn_responder_image_name }}"
+  register: responder_ami
+
+- name: "Assert that there is at least one image available"
+  assert:
+    that: "responder_ami > 0"
+    success_msg: "image found!"
+    fail_msg: "image not found..."
+
+- name: "Define cloud_vpn_responder_image_id"
+  set_fact:
+    cloud_vpn_responder_image_id: "{{ (responder_ami.images | selectattr('name', 'defined') | sort(attribute='creation_date') | last).image_id }}"
