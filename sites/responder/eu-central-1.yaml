@@ -1,5 +1,0 @@
----
-cloud_vpn_psk: "{{ lookup('file', 'keychain/psk/' + cloud_vpn_responder_aws_region + '/' + cloud_vpn_initiator_aws_region) }}"
-cloud_vpn_responder_provider: "csr"
-cloud_vpn_responder_provisioner: "aws"
-cloud_vpn_responder_aws_region: "eu-central-1"

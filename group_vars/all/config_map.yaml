@@ -10,27 +10,57 @@ config_map:
         size: "c4.large"
         user: "ec2-user"
         role: "ansible-network.cisco_ios"
-        key: "keychain/key/eu-central-1/csr/ami-017c87435c405f3ce"
+        key: "{{ playbook_dir }}/keychain/key/eu-central-1/csr/ami-017c87435c405f3ce"
+      # rhel8
+      rhel:
+        image: "ami-0291f5ffc6fc569c7"
+        size: "c4.large"
+        user: "ec2-user"
+        role: "ansible-network.rhel"
+        key: "{{ playbook_dir }}/keychain/key/eu-central-1/rhel/ami-0291f5ffc6fc569c7"
+        python: "/usr/libexec/platform-python"
     "eu-west-1":
       csr:
         image: "ami-0b4699b61c1e678a2"
         size: "c4.large"
         user: "ec2-user"
         role: "ansible-network.cisco_ios"
-        key: "keychain/key/eu-west-1/csr/ami-0b4699b61c1e678a2"
+        key: "{{ playbook_dir }}/keychain/key/eu-west-1/csr/ami-0b4699b61c1e678a2"
+      # rhel8
+      rhel:
+        image: "ami-0158442d747d86c06"
+        size: "c4.large"
+        user: "ec2-user"
+        role: "ansible-network.rhel"
+        key: "{{ playbook_dir }}/keychain/key/eu-west-1/rhel/ami-0158442d747d86c06"
+        python: "/usr/libexec/platform-python"
     "eu-west-2":
       csr:
         image: "ami-01f405e96dbb3f2af"
         size: "c4.large"
         user: "ec2-user"
         role: "ansible-network.cisco_ios"
-        key: "keychain/key/eu-west-2/csr/ami-01f405e96dbb3f2af"
+        key: "{{ playbook_dir }}/keychain/key/eu-west-2/csr/ami-01f405e96dbb3f2af"
+      # rhel8
+      rhel:
+        image: "ami-04880a554066d5614"
+        size: "c4.large"
+        user: "ec2-user"
+        role: "ansible-network.rhel"
+        key: "{{ playbook_dir }}/keychain/key/eu-west-2/rhel/ami-04880a554066d5614"
+        python: "/usr/libexec/platform-python"
     "eu-west-3":
       csr: 
         image: "ami-05dc9188eb99b99b9"
         size: "c4.large"
         user: "ec2-user"
         role: "ansible-network.cisco_ios"
-        key: "keychain/key/eu-west-3/csr/ami-05dc9188eb99b99b9"
-
-
+        key: "{{ playbook_dir }}/keychain/key/eu-west-3/csr/ami-05dc9188eb99b99b9"
+      # rhel8
+      rhel:
+        image: "ami-006a6e662591a9c6b"
+        size: "c4.large"
+        user: "ec2-user"
+        role: "ansible-network.rhel"
+        key: "{{ playbook_dir }}/keychain/key/eu-west-3/rhel/ami-006a6e662591a9c6b"
+        python: "/usr/libexec/platform-python"

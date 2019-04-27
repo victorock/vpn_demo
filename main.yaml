@@ -3,8 +3,12 @@
   hosts: localhost
   connection: local
   gather_facts: no
+  vars:
+    cloud_vpn_name: "domain001"
+    cloud_vpn_initiator: "eu-west-2"
   vars_files:
-    - "{{ cloud_vpn_initiator }}"
-    - "{{ cloud_vpn_responder }}"
+    - "domain/{{ cloud_vpn_name }}/initiator/{{ cloud_vpn_initiator }}.yaml"
+    - "domain/{{ cloud_vpn_name }}/responder.yaml"
   roles:
+    - role: "do_validation"
     - role: "ansible-network.cloud_vpn"

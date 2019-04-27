@@ -1,0 +1,2 @@
+---
+cloud_vpn_psk: "{{ lookup('file', 'keychain/domain/' + cloud_vpn_name) }}"
