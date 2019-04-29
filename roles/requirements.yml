@@ -1,6 +1,4 @@
 - ansible-network.cloud_vpn
 - ansible-network.aws
-- ansible-network.azure
-- ansible-network.openstack
 - ansible-network.rhel
 - ansible-network.cisco_ios
