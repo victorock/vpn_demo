@@ -19,8 +19,6 @@ cloud_vpn_responder_instance_name: "{{ cloud_vpn_name }}_{{ cloud_vpn_responder_
 cloud_vpn_responder_manage_vpc: true
 cloud_vpn_responder_manage_gw: true
 cloud_vpn_responder_manage_keypair: true
-cloud_vpn_responder_aws_access_key: "{{ lookup('ENV', 'AWS_ACCESS_KEY_ID') }}" 
-cloud_vpn_responder_aws_secret_key: "{{ lookup('ENV', 'AWS_SECRET_ACCESS_KEY') }}"
 cloud_vpn_responder_aws_region: "eu-central-1"
 cloud_vpn_responder_instance_size: "t2.medium"
 cloud_vpn_responder_user: "ec2-user"
@@ -55,8 +53,6 @@ cloud_vpn_initiator_user: "ec2-user"
 cloud_vpn_initiator_image_name: "RHEL-7.6*GA*"
 cloud_vpn_initiator_image_owner: "309956199498"
 cloud_vpn_initiator_ssh_private_key_file: "{{ playbook_dir }}/keychain/{{ cloud_vpn_name }}/{{ cloud_vpn_initiator_id }}"
-cloud_vpn_initiator_aws_access_key: "{{ lookup('ENV', 'AWS_ACCESS_KEY_ID') }}" 
-cloud_vpn_initiator_aws_secret_key: "{{ lookup('ENV', 'AWS_SECRET_ACCESS_KEY') }}"
 cloud_vpn_initiator_key_name: "{{ cloud_vpn_initiator_image_id }}"
 cloud_vpn_initiator_vpc_cidr: "{{ cloud_vpn_vpc_cidr | ipsubnet(24, cloud_vpn_initiator_id) }}"
 
