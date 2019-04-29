@@ -1,3 +1,0 @@
-ansible-network.*
-!.gitignore
-!requirements.yml

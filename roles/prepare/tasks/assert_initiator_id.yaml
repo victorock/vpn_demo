@@ -1,0 +1,5 @@
+---
+- name: "Assert initiator id range"
+  assert:
+    that:
+      - "cloud_vpn_initiator_id > 100"

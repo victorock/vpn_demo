@@ -134,6 +134,7 @@ class Keypair(object):
         self.force = module.params['force']
         self.size = module.params['size']
         self.type = module.params['type']
+        self.key_format = module.params['key_format']
         self.comment = module.params['comment']
         self.changed = False
         self.check_mode = module.check_mode
@@ -168,6 +169,7 @@ class Keypair(object):
             args = [
                 module.get_bin_path('ssh-keygen', True),
                 '-q',
+                '-m', str(self.key_format),
                 '-N', '',
                 '-b', str(self.size),
                 '-t', self.type,
@@ -237,6 +239,7 @@ class Keypair(object):
             'changed': self.changed,
             'size': self.size,
             'type': self.type,
+            'key_format': self.key_format,
             'filename': self.path,
             'fingerprint': self.fingerprint,
             'public_key': self.public_key,
@@ -275,6 +278,7 @@ def main():
             state=dict(type='str', default='present', choices=['present', 'absent']),
             size=dict(type='int'),
             type=dict(type='str', default='rsa', choices=['rsa', 'dsa', 'rsa1', 'ecdsa', 'ed25519']),
+            key_format=dict(type='str', default='PEM', choices=['RFC4716', 'PKCS8', 'PEM']),
             force=dict(type='bool', default=False),
             path=dict(type='path', required=True),
             comment=dict(type='str'),

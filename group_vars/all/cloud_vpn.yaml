@@ -1,5 +1,0 @@
----
-# For user-friendly and simplicity this variable is defined at playbook
-# for advanced usage, the ideal would be to have everything specified in the inventory
-#cloud_vpn_domain: "domain001"
-cloud_vpn_psk: "{{ config_map.psk }}"

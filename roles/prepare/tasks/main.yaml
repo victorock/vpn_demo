@@ -1,4 +1,10 @@
 ---
+- name: "Assert initiator id"
+  include_tasks: "assert_initiator_id.yaml"
+
+- name: "Assert responder id"
+  include_tasks: "assert_responder_id.yaml"
+
 - name: "Define domain psk key"
   include_tasks: "define_psk_key.yaml"
   when: not cloud_vpn_name

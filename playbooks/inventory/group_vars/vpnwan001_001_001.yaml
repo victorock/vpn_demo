@@ -1,0 +1,72 @@
+---
+# Ansible Global
+ansible_connection: local
+
+# Domain Global
+cloud_vpn_name: "vpnwan001"
+cloud_vpn_psk: "98udljdlksamd98ud9"
+cloud_vpn_vpc_cidr: "10.123.0.0/16"
+cloud_vpn_tunnel_cidr: "169.254.0.0/22"
+cloud_vpn_tunnel_failover_cidr: "169.254.128.0/22"
+cloud_vpn_routing: "static"
+
+# Responder Global (1 Per group)
+## Provisioner variables
+cloud_vpn_responder_id: 1
+cloud_vpn_responder_provisioner: aws
+cloud_vpn_responder_provisioner_role: "ansible-network.aws"
+cloud_vpn_responder_instance_name: "{{ cloud_vpn_name }}_{{ cloud_vpn_responder_id }}"
+cloud_vpn_responder_manage_vpc: true
+cloud_vpn_responder_manage_gw: true
+cloud_vpn_responder_manage_keypair: true
+cloud_vpn_responder_aws_access_key: "{{ lookup('ENV', 'AWS_ACCESS_KEY_ID') }}" 
+cloud_vpn_responder_aws_secret_key: "{{ lookup('ENV', 'AWS_SECRET_ACCESS_KEY') }}"
+cloud_vpn_responder_aws_region: "eu-central-1"
+cloud_vpn_responder_instance_size: "t2.medium"
+cloud_vpn_responder_user: "ec2-user"
+cloud_vpn_responder_image_name: "RHEL-7.6*GA*"
+cloud_vpn_responder_image_owner: "309956199498"
+cloud_vpn_responder_ssh_private_key_file: "{{ playbook_dir }}/keychain/{{ cloud_vpn_name }}/{{ cloud_vpn_responder_id }}"
+cloud_vpn_responder_vpc_cidr: "{{ cloud_vpn_vpc_cidr | ipsubnet(24, cloud_vpn_responder_id) }}"
+
+## Provider variables
+cloud_vpn_responder_ansible_connection: ssh
+cloud_vpn_responder_provider: rhel
+cloud_vpn_responder_provider_role: "ansible-network.rhel"
+cloud_vpn_responder_cidr: "{{ cloud_vpn_responder_vpc_cidr | ipsubnet(28, 1) }}"
+cloud_vpn_responder_private_ip: "{{ cloud_vpn_responder_cidr | nthhost(5) }}"
+cloud_vpn_responder_tunnel_interface: "vti{{ cloud_vpn_initiator_id }}"
+### Use the initiator's id for interface marking
+cloud_vpn_responder_tunnel_interface_mark: "{{ cloud_vpn_initiator_id }}/0xffffffff"
+cloud_vpn_responder_tunnel_failover_interface_mark: "{{ cloud_vpn_initiator_id }}/0xffffffff"
+### the first ip of initiator's subnet
+cloud_vpn_responder_tunnel_ip: "{{ cloud_vpn_tunnel_cidr | ipsubnet(30, cloud_vpn_initiator_id) | nthhost(1) }}"
+
+# Initiator Global
+## Provisioner variables
+cloud_vpn_initiator_provisioner: aws
+cloud_vpn_initiator_provisioner_role: "ansible-network.aws"
+cloud_vpn_initiator_instance_name: "{{ inventory_hostname }}"
+cloud_vpn_initiator_manage_vpc: true
+cloud_vpn_initiator_manage_gw: true
+cloud_vpn_initiator_manage_keypair: true
+cloud_vpn_initiator_instance_size: "t2.medium"
+cloud_vpn_initiator_user: "ec2-user"
+cloud_vpn_initiator_image_name: "RHEL-7.6*GA*"
+cloud_vpn_initiator_image_owner: "309956199498"
+cloud_vpn_initiator_ssh_private_key_file: "{{ playbook_dir }}/keychain/{{ cloud_vpn_name }}/{{ cloud_vpn_initiator_id }}"
+cloud_vpn_initiator_aws_access_key: "{{ lookup('ENV', 'AWS_ACCESS_KEY_ID') }}" 
+cloud_vpn_initiator_aws_secret_key: "{{ lookup('ENV', 'AWS_SECRET_ACCESS_KEY') }}"
+cloud_vpn_initiator_key_name: "{{ cloud_vpn_initiator_image_id }}"
+cloud_vpn_initiator_vpc_cidr: "{{ cloud_vpn_vpc_cidr | ipsubnet(24, cloud_vpn_initiator_id) }}"
+
+## Provider variables
+cloud_vpn_initiator_ansible_connection: ssh
+cloud_vpn_initiator_provider: rhel
+cloud_vpn_initiator_provider_role: "ansible-network.rhel"
+cloud_vpn_initiator_cidr: "{{ cloud_vpn_initiator_vpc_cidr | ipsubnet(28, 1) }}"
+cloud_vpn_initiator_private_ip: "{{ cloud_vpn_initiator_cidr | nthhost(5) }}"
+cloud_vpn_initiator_tunnel_ip: "{{ cloud_vpn_tunnel_cidr | ipsubnet(30, cloud_vpn_initiator_id) | nthhost(2) }}"
+cloud_vpn_initiator_tunnel_interface: "vti{{ cloud_vpn_responder_id }}"
+cloud_vpn_initiator_tunnel_interface_mark: "{{ cloud_vpn_initiator_id }}/0xffffffff"
+cloud_vpn_initiator_tunnel_failover_interface_mark: "{{ cloud_vpn_initiator_tunnel_interface_mark }}"

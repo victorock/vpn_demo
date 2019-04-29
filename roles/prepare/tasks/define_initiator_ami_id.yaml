@@ -10,10 +10,15 @@
 
 - name: "Assert that there is at least one image available"
   assert:
-    that: "initiator_ami > 0"
+    that: "initiator_ami | length > 0"
     success_msg: "image found!"
     fail_msg: "image not found..."
 
 - name: "Define cloud_vpn_initiator_image_id as latest image_id found"
   set_fact:
     cloud_vpn_initiator_image_id: "{{ (initiator_ami.images | selectattr('name', 'defined') | sort(attribute='creation_date') | last).image_id }}"
+
+- name: "cloud_vpn_initiator_image_id"
+  debug:
+    var: cloud_vpn_initiator_image_id
+    verbosity: 1

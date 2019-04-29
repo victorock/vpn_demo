@@ -1,0 +1,10 @@
+---
+- name: "VPNwan?"
+  hosts: "all"
+  connection: local
+  gather_facts: no
+  roles:
+    - role: "self"
+    - role: "prepare"
+    - role: "ansible-network.cloud_vpn"
+      function: "run"

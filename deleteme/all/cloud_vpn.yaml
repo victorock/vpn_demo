@@ -1,0 +1,9 @@
+---
+# For user-friendly and simplicity this variable is defined at playbook
+# for advanced usage, the ideal would be to have everything specified in the inventory
+#cloud_vpn_domain: "domain001"
+cloud_vpn_psk: "{{ config_map.psk }}"
+cloud_vpn_vpc_cidr: "10.123.0.0/16"
+cloud_vpn_tunnel_cidr: "169.254.0.0/22"
+cloud_vpn_tunnel_failover_cidr: "169.254.128.0/22"
+cloud_vpn_routing: "static"

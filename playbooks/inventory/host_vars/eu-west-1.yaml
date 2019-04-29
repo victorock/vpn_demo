@@ -1,0 +1,3 @@
+---
+cloud_vpn_initiator_id: 101
+cloud_vpn_initiator_aws_region: "eu-west-1"
