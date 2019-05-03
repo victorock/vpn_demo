@@ -2,7 +2,7 @@
 - name: ansible-network.cloud_vpn
   src: https://github.com/victorock/cloud_vpn
   scm: git
-  version: devel
+  version: vars
 - name: ansible-network.aws
   src: https://github.com/victorock/aws
   scm: git
