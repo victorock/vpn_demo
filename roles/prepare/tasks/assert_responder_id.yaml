@@ -1,5 +1,6 @@
 ---
 - name: "Assert responder id range"
+  no_log: true
   assert:
     that:
       - "cloud_vpn_responder_id > 0"
