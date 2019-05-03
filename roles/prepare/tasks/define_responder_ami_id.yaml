@@ -14,9 +14,6 @@
     _ami: "{{ r_ec2_ami_facts | default([]) }}"
   assert:
     that: "_ami | length > 0"
-    _ami: "{{ r_ec2_ami_facts | default([]) }}"
-  assert:
-    that: "_ami | length > 0"
 
 - name: "Define cloud_vpn_responder_image_id"
   set_fact:
