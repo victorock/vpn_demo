@@ -10,7 +10,7 @@
 - name: ansible-network.rhel
   src: https://github.com/victorock/rhel
   scm: git
-  version: devel
+  version: test
 - name: ansible-network.cisco_ios
   src: https://github.com/victorock/cisco_ios
   scm: git
