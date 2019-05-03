@@ -20,7 +20,7 @@
 
 - name: "Define cloud_vpn_responder_image_id"
   set_fact:
-    cloud_vpn_responder_image_id: "{{ (responder_ami.images | selectattr('name', 'defined') | sort(attribute='creation_date') | last).image_id }}"
+    cloud_vpn_responder_image_id: "{{ (r_ec2_ami_facts.images | selectattr('name', 'defined') | sort(attribute='creation_date') | last).image_id }}"
 
 - name: "cloud_vpn_responder_image_id"
   debug:
