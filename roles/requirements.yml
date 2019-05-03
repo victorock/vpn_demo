@@ -1,12 +1,17 @@
+---
 - name: ansible-network.cloud_vpn
   src: https://github.com/victorock/cloud_vpn
-  branch: devel
+  scm: git
+  version: devel
 - name: ansible-network.aws
   src: https://github.com/victorock/aws
-  branch: devel
+  scm: git
+  version: devel
 - name: ansible-network.rhel
   src: https://github.com/victorock/rhel
-  branch: devel
+  scm: git
+  version: devel
 - name: ansible-network.cisco_ios
   src: https://github.com/victorock/cisco_ios
-  branch: devel
+  scm: git
+  version: devel
