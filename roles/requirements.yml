@@ -1,4 +1,12 @@
-- ansible-network.cloud_vpn
-- ansible-network.aws
-- ansible-network.rhel
-- ansible-network.cisco_ios
+- name: ansible-network.cloud_vpn
+  src: https://github.com/victorock/cloud_vpn
+  branch: devel
+- name: ansible-network.aws
+  src: https://github.com/victorock/aws
+  branch: devel
+- name: ansible-network.rhel
+  src: https://github.com/victorock/rhel
+  branch: devel
+- name: ansible-network.cisco_ios
+  src: https://github.com/victorock/cisco_ios
+  branch: devel
