@@ -1,6 +1,5 @@
 ---
 - name: "Find initiator ami"
-  failed_when: r_ec2_ami_facts | default([]) | length < 1
   ec2_ami_facts:
     region: "{{ cloud_vpn_initiator_aws_region | default(omit) }}"
     owners: "{{ cloud_vpn_initiator_image_owner | default(omit) }}"
