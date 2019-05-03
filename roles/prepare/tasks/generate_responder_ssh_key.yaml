@@ -7,3 +7,4 @@
 - name: "Generate ssh for responder"
   openssh_keypair:
     path: "{{ cloud_vpn_responder_ssh_private_key_file }}"
+    mode: 0600
