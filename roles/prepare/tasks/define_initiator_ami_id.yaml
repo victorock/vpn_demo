@@ -1,18 +1,19 @@
 ---
 - name: "Find initiator ami"
-  failed_when: initiator_ami|length < 1
+  failed_when: r_ec2_ami_facts | default([]) | length < 1
   ec2_ami_facts:
     region: "{{ cloud_vpn_initiator_aws_region | default(omit) }}"
     owners: "{{ cloud_vpn_initiator_image_owner | default(omit) }}"
     filters:
       name: "{{ cloud_vpn_initiator_image_name }}"
-  register: initiator_ami
+  register: r_ec2_ami_facts
 
 - name: "Assert that there is at least one image available"
+  no_log: true
+  vars:
+    _ami: "{{ r_ec2_ami_facts | default([]) }}"
   assert:
-    that: "initiator_ami | length > 0"
-    success_msg: "image found!"
-    fail_msg: "image not found..."
+    that: "_ami | length > 0"
 
 - name: "Define cloud_vpn_initiator_image_id as latest image_id found"
   set_fact:
